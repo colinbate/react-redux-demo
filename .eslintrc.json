@@ -10,13 +10,15 @@
   "env": {
     "browser": true,
     "es6": true,
-    "commonjs": true
+    "commonjs": true,
+    "node": true
   },
   "plugins": [
     "react"
   ],
   "extends": ["eslint:recommended", "plugin:react/recommended"],
   "rules": {
+    "no-console": 0,
     "array-callback-return": 1,
     "curly": 2,
     "dot-location": [2, "property"],

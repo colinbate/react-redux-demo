@@ -13,11 +13,18 @@
     "prod": "brunch build --production"
   },
   "dependencies": {
+    "body-parser": "^1.15.1",
     "bootstrap": "^3.3.6",
+    "express": "^4.13.4",
     "react": "~15.1.0",
     "react-dom": "~15.1.0",
     "react-redux": "~4.4.5",
-    "redux": "~3.5.2"
+    "redux": "~3.5.2",
+    "redux-form": "^5.2.5",
+    "serve-favicon": "^2.3.0",
+    "serve-static": "^1.11.1",
+    "shortid": "^2.2.6",
+    "superagent": "^2.0.0"
   },
   "devDependencies": {
     "auto-reload-brunch": "^2.7.1",
