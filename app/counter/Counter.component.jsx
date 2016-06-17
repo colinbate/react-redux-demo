@@ -20,8 +20,8 @@ BaseCounter.propTypes = {
   decrement: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => ({
-  count: getCount(state)
+const mapStateToProps = () => ({
+  count: 0
 });
 
 export default connect(mapStateToProps, actions)(BaseCounter);

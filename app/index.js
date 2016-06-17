@@ -4,7 +4,7 @@ import {Root} from './root';
 import configureStore from './configureStore';
 
 const store = configureStore();
-
+window.store = store;
 const load = () => {
   render(
     <Root store={store} />,

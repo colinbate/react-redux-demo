@@ -1,10 +1,12 @@
 import {combineReducers} from 'redux';
-import counter, * as fromCounter from '../counter/counter.reducer';
+import shelf, * as fromShelf from '../shelf/shelf.reducer';
+import {reducer as formReducer} from 'redux-form';
 
 const rootReducer = combineReducers({
-  counter
+  shelf,
+  form: formReducer
 });
 
 export default rootReducer;
 
-export const getCount = (state) => fromCounter.getCount(state.counter);
+// export const getShelf = (state) => fromShelf.getShelf(state.shelf);
