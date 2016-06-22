@@ -11,12 +11,16 @@ exports.config = {
   },
 
   plugins: {
-    babel: {presets: ['es2015', 'react']}
-  },
-
-  npm: {
-    styles: {
-      bootstrap: ['dist/css/bootstrap.css']
+    babel: {presets: ['es2015', 'react']},
+    css: {
+      modules: true
+    },
+    copyfilemon: {
+      css: [
+        'node_modules/bootstrap/dist/css/bootstrap.min.css',
+        'node_modules/bootstrap/dist/css/bootstrap.min.css.map'
+      ],
+      fonts: ['node_modules/bootstrap/dist/fonts']
     }
   }
 };

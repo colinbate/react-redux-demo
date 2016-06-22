@@ -1,0 +1,26 @@
+.bookImage {
+  float: left;
+  clear: left;
+  margin-right: 1em;
+}
+
+.book {
+  clear: left;
+  margin: 1em 0;
+}
+
+.unread {
+  composes: book;
+  background-color: #eee;
+}
+
+.currently-reading {
+  composes: book;
+  background-color: #eef;
+}
+
+.read {
+  composes: book;
+  background-color: #efe;
+}
+

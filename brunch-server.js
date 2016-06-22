@@ -12,7 +12,7 @@ module.exports = (port, path, callback) => {
 
   const database = require('./allbooks.json');
   const bookDefaults = {
-    status: 'unknown',
+    status: 'unread',
     image: 'https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png',
     rating: 0,
     ratingCount: 0,
@@ -20,8 +20,28 @@ module.exports = (port, path, callback) => {
   };
 
   app.get('/api/books', (req, res) => {
-    // res.set('Content-Type', 'application/json');
     res.json(database);
+  });
+
+  app.post('/api/book/:id/status', (req, res) => {
+    const {id} = req.params;
+    const status = req.body.status;
+    const book = database.find(b => b.id === id);
+    if (!book) {
+      return res.sendStatus(404);
+    }
+    book.status = status;
+    res.sendStatus(204);
+  });
+
+  app.delete('/api/book/:id', (req, res) => {
+    const {id} = req.params;
+    const index = database.findIndex(b => b.id === id);
+    if (index === -1) {
+      return res.sendStatus(404);
+    }
+    database.splice(index, 1);
+    res.sendStatus(204);
   });
 
   app.post('/api/book', (req, res) => {
@@ -31,7 +51,7 @@ module.exports = (port, path, callback) => {
     }
     const id = {id: shortid.generate()};
     const record = Object.assign(id, bookDefaults, book);
-    database.push(record);
+    database.unshift(record);
     res.json(record);
   });
 

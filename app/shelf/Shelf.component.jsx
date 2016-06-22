@@ -13,16 +13,12 @@ class Shelf extends Component {
     this.props.fetchBooks();
   }
 
-  handle (values, dispatch) {
-    console.log(values);
-  }
-
   render () {
-    const {shelf} = this.props;
+    const {shelf, setStatus, addBook} = this.props;
     return (
       <div>
-        <AddBook onSubmit={this.handle}/>
-        {shelf.map(book => <Book key={book.id} {...book}/>)}
+        <AddBook onSubmit={addBook}/>
+        {shelf.map(book => <Book key={book.id} {...book} onStatusChange={setStatus}/>)}
       </div>
     );
   }
