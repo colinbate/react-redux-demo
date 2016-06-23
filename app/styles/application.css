@@ -4,7 +4,7 @@
 }
 
 body {
-  margin: 1em;
+  margin: 1em 0 0 0;
 }
 
 :global .cf:before,
@@ -19,4 +19,8 @@ body {
 
 :global .btn-group .btn:focus {
   outline: none;
+}
+
+:global .nav.nav-tabs.nav-pad {
+  padding: 0 1em;
 }

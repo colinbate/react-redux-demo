@@ -28,10 +28,10 @@ export const setStatus = (book, status) => dispatch => {
     status
   });
   return api.updateBook(newBook).then(
-    () => {
+    returnedBook => {
       dispatch({
         type: 'SET_STATUS_SUCCESS',
-        book: newBook
+        book: returnedBook
       });
     },
     () => {

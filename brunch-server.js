@@ -37,7 +37,7 @@ module.exports = (port, path, callback) => {
       return res.sendStatus(400);
     }
     database[index] = Object.assign({}, bookDefaults, update);
-    res.sendStatus(204);
+    res.json(database[index]);
   });
 
   app.delete('/api/book/:id', (req, res) => {
