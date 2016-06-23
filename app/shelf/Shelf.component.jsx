@@ -18,7 +18,7 @@ class Shelf extends Component {
     return (
       <div>
         <AddBook onSubmit={addBook}/>
-        {shelf.map(book => <Book key={book.id} {...book} onStatusChange={setStatus}/>)}
+        {shelf.map(book => <Book key={book.id} book={book} onStatusChange={setStatus}/>)}
       </div>
     );
   }

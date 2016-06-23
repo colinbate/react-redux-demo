@@ -4,10 +4,10 @@ export default (state = [], action) => {
     case 'FETCH_BOOKS_SUCCESS':
       return action.response;
     case 'SET_STATUS_SUCCESS':
-      prevIndex = state.findIndex(b => b.id === action.id);
+      prevIndex = state.findIndex(b => b.id === action.book.id);
       return [
         ...state.slice(0, prevIndex),
-        Object.assign({}, state[prevIndex], {status: action.status}),
+        action.book,
         ...state.slice(prevIndex + 1)
       ];
     case 'ADD_BOOK_SUCCESS':

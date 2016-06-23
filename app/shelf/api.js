@@ -4,8 +4,8 @@ export function getBooks () {
   return request.get('/api/books');
 }
 
-export function setStatus (id, status) {
-  return request.post(`/api/book/${id}/status`).send({status});
+export function updateBook (book) {
+  return request.put(`/api/book/${book.id}`).send(book);
 }
 
 export function addBook (book) {

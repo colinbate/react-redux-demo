@@ -19,18 +19,24 @@ module.exports = (port, path, callback) => {
     lastRead: ''
   };
 
+  const isValid = book => book.title && book.author;
+
   app.get('/api/books', (req, res) => {
     res.json(database);
   });
 
-  app.post('/api/book/:id/status', (req, res) => {
+  app.put('/api/book/:id', (req, res) => {
     const {id} = req.params;
-    const status = req.body.status;
-    const book = database.find(b => b.id === id);
-    if (!book) {
+    const update = req.body;
+    update.id = id;
+    const index = database.findIndex(b => b.id === id);
+    if (index === -1) {
       return res.sendStatus(404);
     }
-    book.status = status;
+    if (!isValid(update)) {
+      return res.sendStatus(400);
+    }
+    database[index] = Object.assign({}, bookDefaults, update);
     res.sendStatus(204);
   });
 
@@ -46,7 +52,7 @@ module.exports = (port, path, callback) => {
 
   app.post('/api/book', (req, res) => {
     const book = req.body;
-    if (!book.title || !book.author) {
+    if (!isValid(book)) {
       return res.sendStatus(400);
     }
     const id = {id: shortid.generate()};

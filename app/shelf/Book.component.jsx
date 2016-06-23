@@ -3,15 +3,24 @@ import styles from './book.css';
 
 const s = (a, b) => a === b ? 'info' : 'default';
 
-const Book = ({title, author, image, status, id, onStatusChange}) => (
+const StatusButton = ({setTo, book, icon, onChange, children}) => (
+  <button
+    type="button"
+    className={`btn btn-${s(book.status, setTo)}`}
+    onClick={() => onChange(book, setTo)}>
+    <span className={`glyphicon glyphicon-${icon}`}></span> {children}
+  </button>
+);
+
+const Book = ({book, onStatusChange}) => (
   <div className={`${styles[status]} cf`}>
-    <img src={image} className={styles.bookImage}/>
-    <h4>{title}</h4>
-    <p>{author}</p>
+    <img src={book.image} className={styles.bookImage}/>
+    <h4>{book.title}</h4>
+    <p>{book.author}</p>
     <div className="btn-group" role="group" aria-label="Set status">
-      <button type="button" onClick={() => onStatusChange(id, 'unread')} className={`btn btn-${s(status, 'unread')}`}><span className="glyphicon glyphicon-book"></span> Unread</button>
-      <button type="button" onClick={() => onStatusChange(id, 'currently-reading')} className={`btn btn-${s(status, 'currently-reading')}`}><span className="glyphicon glyphicon-bookmark"></span> Reading</button>
-      <button type="button" onClick={() => onStatusChange(id, 'read')} className={`btn btn-${s(status, 'read')}`}><span className="glyphicon glyphicon-ok"></span> Read</button>
+      <StatusButton book={book} icon="book" setTo="unread" onChange={onStatusChange}>Unread</StatusButton>
+      <StatusButton book={book} icon="bookmark" setTo="currently-reading" onChange={onStatusChange}>Reading</StatusButton>
+      <StatusButton book={book} icon="ok" setTo="read" onChange={onStatusChange}>Read</StatusButton>
     </div>
   </div>
 );

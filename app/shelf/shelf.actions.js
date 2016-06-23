@@ -20,18 +20,18 @@ export const fetchBooks = () => dispatch => {
   );
 };
 
-export const setStatus = (id, status) => dispatch => {
+export const setStatus = (book, status) => dispatch => {
+  const newBook = Object.assign({}, book, {status});
   dispatch({
     type: 'SET_STATUS_STARTED',
-    id,
+    book,
     status
   });
-  return api.setStatus(id, status).then(
+  return api.updateBook(newBook).then(
     () => {
       dispatch({
         type: 'SET_STATUS_SUCCESS',
-        id,
-        status
+        book: newBook
       });
     },
     () => {
