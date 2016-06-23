@@ -13,7 +13,7 @@ const StatusButton = ({setTo, book, icon, onChange, children}) => (
 );
 
 const Book = ({book, onStatusChange}) => (
-  <div className={`${styles[status]} cf`}>
+  <div className={`${styles[book.status]} cf`}>
     <img src={book.image} className={styles.bookImage}/>
     <h4>{book.title}</h4>
     <p>{book.author}</p>
