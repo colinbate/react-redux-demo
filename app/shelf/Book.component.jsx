@@ -22,6 +22,7 @@ const Book = ({book, onStatusChange}) => (
       <StatusButton book={book} icon="bookmark" setTo="currently-reading" onChange={onStatusChange}>Reading</StatusButton>
       <StatusButton book={book} icon="ok" setTo="read" onChange={onStatusChange}>Read</StatusButton>
     </div>
+    <div className={styles.lastRead}>Last Read: {book.lastRead ? book.lastRead : 'never'}</div>
   </div>
 );
 

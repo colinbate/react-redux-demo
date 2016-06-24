@@ -1,12 +1,20 @@
 import React from 'react';
-import Shelf from '../shelf';
+import NavLink from './NavLink.component';
+import styles from './chrome.css';
 
 export default class App extends React.Component {
   render () {
     return (
       <div id="content">
-        <h1>Book Shelf</h1>
-        <Shelf/>
+        <nav>
+          <ul className="nav nav-tabs nav-pad">
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="/about">About</NavLink>
+          </ul>
+        </nav>
+        <div className={styles.main}>
+          {this.props.children}
+        </div>
       </div>
     );
   }

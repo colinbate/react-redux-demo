@@ -17,6 +17,7 @@ class Shelf extends Component {
     const {shelf, setStatus, addBook} = this.props;
     return (
       <div>
+        <h1>Book Shelf</h1>
         <AddBook onSubmit={addBook}/>
         {shelf.map(book => <Book key={book.id} book={book} onStatusChange={setStatus}/>)}
       </div>

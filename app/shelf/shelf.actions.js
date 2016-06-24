@@ -21,7 +21,12 @@ export const fetchBooks = () => dispatch => {
 };
 
 export const setStatus = (book, status) => dispatch => {
-  const newBook = Object.assign({}, book, {status});
+  const delta = {status};
+  if (status === 'read') {
+    // set lastRad to current date
+    delta.lastRead = (new Date()).toDateString().replace(/^\w{3}\s(\w{3}\s\d\d).*(\d{4})$/, '$1, $2');
+  }
+  const newBook = Object.assign({}, book, delta);
   dispatch({
     type: 'SET_STATUS_STARTED',
     book,
