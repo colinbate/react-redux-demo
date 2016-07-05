@@ -10,7 +10,7 @@ const preventAndHandle = (sub, reset) => e => {
 const BootstrapField = props => (
   <div className="form-group">
     <label htmlFor={props.name}>{props.placeholder}</label>
-    <input className="form-control" {...props} id={props.name} />
+    <input className="form-control" {...props.input} id={props.name} />
     {props.touched && props.error && <span>{props.error}</span>}
   </div>
 );
