@@ -26,7 +26,7 @@ module.exports = (port, path, callback) => {
   });
 
   app.put('/api/book/:id', (req, res) => {
-    const {id} = req.params;
+    const id = req.params.id;
     const update = req.body;
     update.id = id;
     const index = database.findIndex(b => b.id === id);
@@ -41,7 +41,7 @@ module.exports = (port, path, callback) => {
   });
 
   app.delete('/api/book/:id', (req, res) => {
-    const {id} = req.params;
+    const id = req.params.id;
     const index = database.findIndex(b => b.id === id);
     if (index === -1) {
       return res.sendStatus(404);
