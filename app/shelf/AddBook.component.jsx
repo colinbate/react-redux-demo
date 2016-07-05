@@ -1,5 +1,5 @@
 import React from 'react';
-import {reduxForm} from 'redux-form';
+import {reduxForm, Field} from 'redux-form';
 export const fields = ['title', 'author'];
 
 const preventAndHandle = (sub, reset) => e => {
@@ -7,20 +7,22 @@ const preventAndHandle = (sub, reset) => e => {
   sub().then(() => reset());
 };
 
+const BootstrapField = props => (
+  <div className="form-group">
+    <label htmlFor={props.name}>{props.placeholder}</label>
+    <input className="form-control" {...props} id={props.name} />
+    {props.touched && props.error && <span>{props.error}</span>}
+  </div>
+);
+
 const AddBook = ({
-  fields: {title, author},
   handleSubmit,
-  resetForm
+  reset
 }) => (
-  <form onSubmit={preventAndHandle(handleSubmit, resetForm)}>
-    <div className="form-group">
-      <label htmlFor="title">Title</label>
-      <input type="text" className="form-control" id="title" placeholder="Title" {...title} />
-    </div>
-    <div className="form-group">
-      <label htmlFor="author">Author</label>
-      <input type="text" className="form-control" id="author" placeholder="Author" {...author} />
-    </div>
+  <form onSubmit={preventAndHandle(handleSubmit, reset)}>
+    <Field type="text" name="title" component={BootstrapField} placeholder="Title"/>
+    <Field type="text" name="author" component={BootstrapField} placeholder="Author"/>
+
     <button className="btn btn-default" type="submit">Save</button>
   </form>
 );
