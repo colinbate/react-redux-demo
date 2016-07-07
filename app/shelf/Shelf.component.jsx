@@ -14,11 +14,11 @@ class Shelf extends Component {
   }
 
   render () {
-    const {shelf, setStatus, addBook} = this.props;
+    const {shelf, setStatus} = this.props;
     return (
       <div>
         <h1>Book Shelf</h1>
-        <AddBook onSubmit={addBook}/>
+        <AddBook/>
         {shelf.map(book => <Book key={book.id} book={book} onStatusChange={setStatus}/>)}
       </div>
     );

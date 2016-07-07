@@ -11,7 +11,15 @@ exports.config = {
   },
 
   plugins: {
-    babel: {presets: ['es2015', 'react']},
+    babel: {
+      presets: ['es2015', 'react'],
+      plugins: [
+        ['transform-runtime', {
+          polyfill: false,
+          regenerator: true
+        }]
+      ]
+    },
     css: {
       modules: true
     },

@@ -1,10 +1,11 @@
 import React from 'react';
 import {reduxForm, Field} from 'redux-form';
-export const fields = ['title', 'author'];
+import {onSubmitActions} from '../shared';
+export const formName = 'add';
 
-const preventAndHandle = (sub, reset) => e => {
+const preventAndHandle = sub => e => {
   e.preventDefault();
-  sub().then(() => reset());
+  sub();
 };
 
 const BootstrapField = props => (
@@ -16,10 +17,9 @@ const BootstrapField = props => (
 );
 
 const AddBook = ({
-  handleSubmit,
-  reset
+  handleSubmit
 }) => (
-  <form onSubmit={preventAndHandle(handleSubmit, reset)}>
+  <form onSubmit={preventAndHandle(handleSubmit)}>
     <Field type="text" name="title" component={BootstrapField} placeholder="Title"/>
     <Field type="text" name="author" component={BootstrapField} placeholder="Author"/>
 
@@ -28,6 +28,6 @@ const AddBook = ({
 );
 
 export default reduxForm({
-  form: 'add',
-  fields
+  form: formName,
+  onSubmit: onSubmitActions('ADD_BOOK')
 })(AddBook);
